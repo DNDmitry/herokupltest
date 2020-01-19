@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <interviewLabel>Add perm set to new user {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Add perm set to new user</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <description>Add Permission Set</description>
+        <name>Add_Permission_Set</name>
+        <label>Add Permission Set</label>
+        <locationX>215</locationX>
+        <locationY>50</locationY>
+        <inputAssignments>
+            <field>AssigneeId</field>
+            <value>
+                <elementReference>UserId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>PermissionSetId</field>
+            <value>
+                <stringValue>0PS0Y000000OS6D</stringValue>
+            </value>
+        </inputAssignments>
+        <object>PermissionSetAssignment</object>
+    </recordCreates>
+    <startElementReference>Add_Permission_Set</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>UserId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

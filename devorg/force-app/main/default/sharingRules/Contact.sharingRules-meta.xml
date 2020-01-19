@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>for_worker</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>for_worker</label>
+        <sharedTo>
+            <role>Regional_manager</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>LastName</field>
+            <operation>equals</operation>
+            <value>Test</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

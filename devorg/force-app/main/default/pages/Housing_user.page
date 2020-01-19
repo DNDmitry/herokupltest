@@ -1,0 +1,124 @@
+<apex:page id="HousingUser" sidebar="false" showHeader="false" controller="HousingUserController" action="{!init}">
+
+    <apex:form id="theForm" forceSSL="true">
+        <apex:outputPanel id="switch" rendered="{!cUser.isManager__c}">
+        <apex:commandButton value="Switch to manager" action="{!redirectToManager}"/>
+        </apex:outputPanel>
+        <apex:outputPanel id="logout">
+            <apex:commandButton value="Logout" action="{!redirectToHousingLoginPage}"/>
+        </apex:outputPanel>
+        <!---SERVICES///////////////////////////////////////////////////////////////////////////////////////////////--->
+        <apex:pageBlock title="My services" id="services">
+            <apex:pageBlockSection columns="1">
+                <apex:pageMessages id="error_services"/>
+                <apex:pageBlockTable value="{!rates}" var="item">
+                    <apex:column headerValue="Electricity">
+                        <apex:outputText value="{0,number,currency}">
+                            <apex:param value="{!item.dDisplayElectricity}"/>
+                        </apex:outputText>
+                    </apex:column>
+                    <apex:column headerValue="Water">
+                        <apex:outputText value="{0,number,currency}">
+                            <apex:param value="{!item.dDisplayWater}"/>
+                        </apex:outputText>
+                    </apex:column>
+                    <apex:column headerValue="Gas">
+                        <apex:outputText value="{0,number,currency}">
+                            <apex:param value="{!item.dDisplayGas}"/>
+                        </apex:outputText>
+                    </apex:column>
+                </apex:pageBlockTable>
+                <apex:commandButton action="{!initMeterReadingValues}" value="Put meter reading" reRender="putting_data"/>
+                <apex:outputPanel title="Meter reading" id="putting_data">
+                    <apex:outputPanel rendered="{!bMetersReadingVisible}">
+                        <apex:outputLabel value="Electricity:" for="electricity"/>
+                        <apex:inputText required="false" id="electricity" value="{!szElectricity}"/>
+                        <apex:outputLabel value="Water:" for="water"/>
+                        <apex:inputText required="false" id="water" value="{!szWater}"/>
+                        <apex:outputLabel value="Gas:" for="gas"/>
+                        <apex:inputText required="false" id="gas" value="{!szGas}"/>
+                        <apex:commandButton action="{!putMeterReadingValues}" value="Send" reRender="services,result"/>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+<!---PAYMENTS///////////////////////////////////////////////////////////////////////////////////////////////--->
+        <apex:pageBlock title="My pays" id="pay">
+            <apex:pageMessages id="error_pay"/>
+            <apex:pageBlockSection columns="3">
+                <apex:outputPanel id="result">
+                    Your balance is: {!dUserBalance}
+                </apex:outputPanel>
+                <apex:outputPanel title="New payment" id="payment">
+                    <apex:outputLabel value="New payment:" for="payment_amount"/>
+                    <apex:inputText required="false" id="payment_amount" value="{!szPayment}"/>
+                    <apex:commandButton action="{!makePayment}" value="Confirm" reRender="result,payment_amount,payment_history,pay"/>
+                </apex:outputPanel>
+                <apex:outputPanel id="payment_history" layout="block" style="overflow:auto;width:750px;height:250px" >
+                        <apex:pageBlockTable title="Payment history" value="{!paymentHistory}" var="item">
+                            <apex:column headerValue="Amount">
+                                <apex:outputText value="{0,number,currency}">
+                                    <apex:param value="{!item.dDisplayAmount}"/>
+                                </apex:outputText>
+                            </apex:column>
+                            <apex:column headerValue="Time">
+                                <apex:outputText value="{0,date,MM'/'dd'/'yyyy, HH:mm:ss z}">
+                                    <apex:param value="{!item.dtDisplayDateTime}"/>
+                                </apex:outputText>
+                            </apex:column>
+                        </apex:pageBlockTable>
+                </apex:outputPanel>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+<!---ADDRESS///////////////////////////////////////////////////////////////////////////////////////////////--->
+        <apex:pageBlock title="My address" id="address_main">
+            <apex:pageBlockSection columns="1">
+                <apex:pageMessages id="error_address"/>
+                <apex:outputLabel style="font-weight:bold" value="Region: " for="region_old"/>
+                <apex:outputText id="region_old" value="{!szRegion}"/>
+                <apex:outputLabel style="font-weight:bold" value="City: " for="city_old"/>
+                <apex:outputText id="city_old" value="{!szCity}"/>
+                <apex:outputLabel style="font-weight:bold" value="Street: " for="street_old"/>
+                <apex:outputText id="street_old" value="{!szStreet}"/>
+                <apex:outputLabel style="font-weight:bold" value="Appartment: " for="appartment_old"/>
+                <apex:outputText id="appartment_old" value="{!szAppartment}"/>
+
+                <apex:commandButton action="{!changeAddressStart}" value="Change address" reRender="address_new,address_main"/>
+
+                <apex:outputPanel title="Change address" id="address_new">
+                    <apex:outputPanel rendered="{!bChangeAddressVisible}" layout="block" styleClass="topPanel">
+                        <apex:panelGrid columns="2" style="margin-top:1em;">
+                            <apex:outputLabel style="font-weight:bold" value="Region:" for="region"/>
+                            <apex:inputfield id="region" value="{!cUser.Region__c}"/>
+
+                            <apex:outputLabel style="font-weight:bold" value="City:" for="city"/>
+                            <apex:inputfield id="city" value="{!cUser.City__c}"/>
+
+                            <apex:outputLabel style="font-weight:bold" value="Street: " for="street_new"/>
+                            <apex:inputText id="street_new" value="{!szStreet}"/>
+
+                            <apex:outputLabel style="font-weight:bold" value="Appartment: " for="appartment_new"/>
+                            <apex:inputText id="appartment_new" value="{!szAppartment}"/>
+
+                            <apex:commandButton action="{!changeAddressFinish}" value="Confirm" reRender="address_main"/>
+                        </apex:panelGrid>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+ <!---MESSAGING///////////////////////////////////////////////////////////////////////////////////////////////--->
+        <apex:pageBlock title="Support" id="support">
+            <apex:pageBlockSection columns="1">
+                <apex:commandButton action="{!sendEmailToManager}" value="Support" reRender="message_new"/>
+
+                <apex:outputPanel title="New message" id="message_new">
+                    <apex:outputPanel rendered="{!bNewMessageVisible}">
+                        <apex:inputTextarea id="newMessage" value="{!szMessageBody}"/>
+                        <apex:commandButton value="Send" action="{!sendMessage}" reRender="support"/>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+
+    </apex:form>
+</apex:page>

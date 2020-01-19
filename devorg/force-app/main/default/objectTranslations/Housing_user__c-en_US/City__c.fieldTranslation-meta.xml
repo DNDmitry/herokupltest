@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- City --></label>
+    <name>City__c</name>
+    <picklistValues>
+        <masterLabel>Chernigov</masterLabel>
+        <translation><!-- Chernigov --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Dnepr</masterLabel>
+        <translation><!-- Dnepr --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Donetsk</masterLabel>
+        <translation><!-- Donetsk --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Kharkov</masterLabel>
+        <translation><!-- Kharkov --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Kherson</masterLabel>
+        <translation><!-- Kherson --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Kiev</masterLabel>
+        <translation><!-- Kiev --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Lugansk</masterLabel>
+        <translation><!-- Lugansk --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Lvov</masterLabel>
+        <translation><!-- Lvov --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mariupol</masterLabel>
+        <translation><!-- Mariupol --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Odessa</masterLabel>
+        <translation><!-- Odessa --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rovno</masterLabel>
+        <translation><!-- Rovno --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Ternopol</masterLabel>
+        <translation><!-- Ternopol --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Uzhgorod</masterLabel>
+        <translation><!-- Uzhgorod --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

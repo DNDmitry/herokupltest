@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>dmitry.pavlovych@sparkybit.com</contactEmail>
+    <label>For rest</label>
+    <oauthConfig>
+        <callbackUrl>https://demon1-dev-ed.my.salesforce.com</callbackUrl>
+        <consumerKey>3MVG9HxRZv05HarTsyUdF8a00gTb6Qr.b6j.DXFC_27NsznDQDV2pxTEaU4.RMWTV3SUDn51BVxU9Lte0q_oW</consumerKey>
+        <isAdminApproved>false</isAdminApproved>
+        <scopes>Api</scopes>
+        <scopes>Full</scopes>
+    </oauthConfig>
+</ConnectedApp>

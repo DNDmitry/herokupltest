@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Street_is_valid</fullName>
+    <active>true</active>
+    <errorConditionFormula>NOT(REGEX(Street__c, &quot;.*[a-z A-Z].*&quot;))</errorConditionFormula>
+    <errorDisplayField>Street__c</errorDisplayField>
+    <errorMessage>Street field must contain a street name and building number.</errorMessage>
+</ValidationRule>

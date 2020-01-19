@@ -1,0 +1,17 @@
+<apex:page sidebar="false" showHeader="true">
+    <apex:pageBlock title="I'm a block">
+        <apex:pageBlockSection title="I'm a blockSection">
+            {! $User.firstname & ' ' & $User.lastname}
+        </apex:pageBlockSection>
+        <apex:pageBlockSection title="New section">
+            <p> Today's Date is {! TODAY()} </p>
+            <p> Next week it will be {! TODAY() + 7} </p>
+            <p>The year today is {! YEAR(TODAY())}</p>
+            <p>Tomorrow will be day number {! DAY(TODAY() + 1)}</p>
+            <p>Let's find a maximum: {! MAX(1,2,3,4,5,6,5,4,3,2,1)} </p>
+            <p>The square root of 49 is {! SQRT(49)}</p>
+            <p>Is it true? {! CONTAINS('salesforce.com', 'force.com')}</p>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+  <h1>Hello world!</h1>
+</apex:page>

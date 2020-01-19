@@ -1,0 +1,44 @@
+<template>
+    <lightning-card title="Related Contacts" icon-name="custom:custom69">
+        <div class="slds-m-around_medium">
+            <template if:true={contacts.data}>
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col">
+                      <span><p style="margin-left: 5%">Selected Records: <b style="color:red;">{recordsCount}</b></p></span>
+                    </div>
+                    <div class="slds-col">
+                        <span>                    
+                            <lightning-button label="Delete"
+                                              icon-name="utility:delete"
+                                              disabled={isDeleteButtonDisabled}
+                                              variant="destructive" 
+                                              onclick={deleteContacts}
+                                              style="margin-left: 40%"></lightning-button>
+                        </span>
+                    </div>
+                    <div class="slds-col">
+                        <span>                    
+                            <lightning-button label="Add"
+                                              icon-name="utility:add"
+                                              variant="brand" 
+                                              onclick={addContact}></lightning-button>
+                        </span>
+                    </div>
+                </div></br>
+                
+
+                <lightning-datatable
+                    key-field="Id"
+                    data={contacts.data}
+                    columns={columns}
+                    onsave={handleSave}
+                    draft-values={draftValues}
+                    onrowselection={getSelectedRecords}>
+                </lightning-datatable>
+            </template>
+            <template if:true={contacts.error}>
+                <!-- if some error is appeared do something -->
+            </template>
+        </div>
+    </lightning-card>
+</template>

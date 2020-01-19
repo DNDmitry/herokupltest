@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Positive_water_rate</fullName>
+    <active>true</active>
+    <errorConditionFormula>Water_rate__c &lt; 0</errorConditionFormula>
+    <errorDisplayField>Water_rate__c</errorDisplayField>
+    <errorMessage>Rate value must be positive</errorMessage>
+</ValidationRule>

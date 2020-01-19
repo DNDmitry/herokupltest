@@ -1,0 +1,42 @@
+<apex:page id="loginPage" sidebar="false" showHeader="false" controller="HousingLoginController">
+    
+    <apex:define name="body">
+        <center>
+            <apex:panelGrid bgcolor="white" columns="1">
+                <br/>
+                <br/>
+                <apex:panelGrid width="758" cellpadding="0" cellspacing="0" bgcolor="white" columns="1" styleClass="topPanelContainer">
+                    <br/>
+                    <apex:outputPanel layout="block" styleClass="topPanel">
+                        <apex:panelGrid width="758" cellpadding="0" cellspacing="0" bgcolor="white" columns="2">
+                            <apex:panelGroup >
+                                <br/>
+                                <apex:outputText styleClass="title" value="Login"/>
+                                <br/>
+                                <br/>
+                                <apex:form id="theForm" forceSSL="true">
+                                    <apex:pageMessages id="error"/>
+                                    <apex:panelGrid columns="2" style="margin-top:1em;">
+
+                                        <apex:outputLabel value="{!$Label.site.username}" for="username"/>
+                                        <apex:inputText id="username" value="{!szUsername}"/>
+
+                                        <apex:outputLabel value="{!$Label.site.password}" for="password"/>
+                                        <apex:inputSecret id="password" value="{!szPassword}"/>
+
+                                        <apex:commandButton action="{!login}" value="{!$Label.site.login}" id="Login"/>
+                                    </apex:panelGrid>
+                                </apex:form>
+                  <apex:form >                  
+                      <apex:commandButton value="Registration" id="Registration" action="{!redirectToRegisterPage}"/>
+                  </apex:form>    
+                </apex:panelGroup>
+              </apex:panelGrid> 
+             </apex:outputPanel>            
+          </apex:panelGrid> 
+       </apex:panelGrid>
+      </center>
+      <br/>
+    </apex:define>
+  
+</apex:page>

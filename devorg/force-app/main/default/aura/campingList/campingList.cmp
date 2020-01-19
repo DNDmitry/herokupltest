@@ -1,0 +1,6 @@
+<aura:component >
+    <p>Bug Spray;</p><br/>
+    <p>Bear Repellant;</p><br/>
+    <p>Goat Food;</p><br/>
+    <p>EXPERIMENT;</p><br/>
+</aura:component>

@@ -1,0 +1,137 @@
+<apex:page id="Housing_manager" sidebar="false" showHeader="false" controller="HousingManagerController" action="{!init}">
+    <apex:form >
+        <apex:pageMessages id="error"/>
+        <apex:outputPanel id="switch" rendered="{!cManager.isManager__c}">
+            <apex:commandButton value="Switch to user" action="{!redirectToUser}"/>
+        </apex:outputPanel>
+        <apex:outputPanel id="logout">
+            <apex:commandButton value="Logout" action="{!redirectToHousingLoginPage}"/>
+        </apex:outputPanel>
+        <!---RATES///////////////////////////////////////////////////////////////////////////////////////////////--->
+        <apex:pageBlock title="My region rates" id="rates">
+            <apex:pageMessages id="error"/>
+            <apex:pageBlockSection columns="1">
+                <apex:outputPanel id="rates_table" layout="block" style="overflow:auto;width:1500px;height:200px" >
+                    <apex:pageBlockTable value="{!rates}" var="item">
+                        <apex:column headerValue="Electricity">
+                            <apex:outputText value="{0,number,currency}">
+                                <apex:param value="{!item.dDisplayElectricity}"/>
+                            </apex:outputText>
+                        </apex:column>
+                        <apex:column headerValue="Water">
+                            <apex:outputText value="{0,number,currency}">
+                                <apex:param value="{!item.dDisplayWater}"/>
+                            </apex:outputText>
+                        </apex:column>
+                        <apex:column headerValue="Gas">
+                            <apex:outputText value="{0,number,currency}">
+                                <apex:param value="{!item.dDisplayGas}"/>
+                            </apex:outputText>
+                        </apex:column>
+                    </apex:pageBlockTable>
+                </apex:outputPanel>
+                <apex:commandButton action="{!initRatesChanging}" value="Change rates" reRender="changing_rates"/>
+                <apex:outputPanel title="New rates" id="changing_rates">
+                    <apex:outputPanel rendered="{!bRatesChanging}">
+                        <apex:outputLabel value="Electricity:" for="electricity"/>
+                        <apex:inputText required="false" id="electricity" value="{!szElectricity}"/>
+                        <apex:outputLabel value="Water:" for="water"/>
+                        <apex:inputText required="false" id="water" value="{!szWater}"/>
+                        <apex:outputLabel value="Gas:" for="gas"/>
+                        <apex:inputText required="false" id="gas" value="{!szGas}"/>
+                        <apex:commandButton action="{!putNewRates}" value="Send" reRender="rates"/>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+
+        <!---USERS///////////////////////////////////////////////////////////////////////////////////////////////--->
+        <apex:pageBlock title="My region users" id="users">
+            <apex:pageMessages id="error"/>
+            <apex:pageBlockSection columns="1">
+                <apex:outputPanel id="filter_buttons">
+                    <apex:commandButton action="{!initiateFilter}" value="Filter" reRender="filter_fields"/>
+                    <apex:commandButton action="{!resetFilter}" value="Reset filter" reRender="users, users_table"/>
+                </apex:outputPanel>
+                <apex:outputPanel title="Filtering by:" id="filter_fields">
+                    <apex:outputPanel rendered="{!bFilterUsing}">
+                        <apex:outputLabel value="Email:" for="email"/>
+                        <apex:inputText required="false" id="email" value="{!szFilterEmail}"/>
+                        <apex:outputLabel value="City:" for="city"/>
+                        <apex:inputText required="false" id="city" value="{!szFilterCity}"/>
+                        <apex:outputLabel value="Street:" for="street"/>
+                        <apex:inputText required="false" id="street" value="{!szFilterStreet}"/>
+                        <apex:outputLabel value="Appartment:" for="appartment"/>
+                        <apex:inputText required="false" id="appartment" value="{!szFilterAppartment}"/>
+                        <apex:commandButton action="{!filterUsers}" value="Select" reRender="users"/>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+
+                <apex:outputPanel id="users_table" layout="block" style="overflow:auto;width:1500px;height:500px" >
+                    <apex:pageBlockTable value="{!IF(bFilterUsed, filteredUsers, users)}" var="item">
+                        <apex:column headerValue="First Name">
+                            <apex:outputText value="{0}">
+                                <apex:param value="{!item.szDisplayFirstName}"/>
+                            </apex:outputText>
+                        </apex:column>
+                        <apex:column headerValue="Last Name">
+                            <apex:outputText value="{0}">
+                                <apex:param value="{!item.szDisplayLastName}"/>
+                            </apex:outputText>
+                        </apex:column>
+                        <apex:column headerValue="Debet Account">
+                            <apex:outputText value="{0,number}">
+                                <apex:param value="{!item.szDisplayDebetAcc}"/>
+                            </apex:outputText>
+                        </apex:column>
+                        <apex:column headerValue="Email">
+                            <apex:outputText value="{0}">
+                                <apex:param value="{!item.szDisplayEmail}"/>
+                            </apex:outputText>
+                        </apex:column>
+                        <apex:column headerValue="City">
+                            <apex:outputText value="{0}">
+                                <apex:param value="{!item.szDisplayCity}"/>
+                            </apex:outputText>
+                        </apex:column>
+                        <apex:column headerValue="Street">
+                            <apex:outputText value="{0}">
+                                <apex:param value="{!item.szDisplayStreet}"/>
+                            </apex:outputText>
+                        </apex:column>
+                        <apex:column headerValue="Appartment">
+                            <apex:outputText value="{0}">
+                                <apex:param value="{!item.szDisplayAppartment}"/>
+                            </apex:outputText>
+                        </apex:column>
+                        
+                        <apex:column headerValue="Redact">
+                            <apex:commandLink action="{!redactStart}" value="Redact" reRender="putting_data">
+                                <apex:param name="Id" value="{!item.szDisplayId}" />
+                            </apex:commandLink>
+                            <apex:outputPanel title="Meter reading" id="putting_data">
+                                <apex:outputPanel rendered="{!bMetersReadingVisible}">
+                                    <apex:outputLabel value="Electricity:" for="electricity"/>
+                                    <apex:inputText required="false" id="electricity" value="{!szRedactElectricity}"/>
+                                    <apex:outputLabel value="Water:" for="water"/>
+                                    <apex:inputText required="false" id="water" value="{!szRedactWater}"/>
+                                    <apex:outputLabel value="Gas:" for="gas"/>
+                                    <apex:inputText required="false" id="gas" value="{!szRedactGas}"/>
+                                    <apex:commandButton action="{!redactFinish}" value="Send" reRender="users_table,users"/>
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+                        </apex:column>
+                    </apex:pageBlockTable>
+                </apex:outputPanel>
+                <apex:outputPanel >
+                    <apex:commandButton disabled="{!bIsFirstPage}" action="{!goToPrevPage}" value="Previous" reRender="users"/>
+                    <apex:commandButton disabled="{!bIsLastPage}" action="{!goToNextPage}" value="Next" reRender="users"/>
+                </apex:outputPanel>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+
+
+
+    </apex:form>
+
+</apex:page>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Housing_user</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Housing_users</value>
+    </caseValues>
+    <layouts>
+        <layout>User Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <errorMessage><!-- Street must contain a building number. --></errorMessage>
+        <name>Building_number</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Street field must contain a street name and building number. --></errorMessage>
+        <name>Street_is_valid</name>
+    </validationRules>
+</CustomObjectTranslation>

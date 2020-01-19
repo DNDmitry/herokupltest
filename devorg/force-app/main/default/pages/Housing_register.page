@@ -1,0 +1,64 @@
+<apex:page id="registerPage" sidebar="false" showHeader="false" standardController="Housing_user__c" extensions="HousingRegisterController">
+
+    <apex:define name="body">
+        <center>
+            <apex:panelGrid bgcolor="white" columns="1">
+                <br/>
+                <br/>
+                <apex:panelGrid width="758" cellpadding="0" cellspacing="0" bgcolor="white" columns="1" styleClass="topPanelContainer">
+                    <br/>
+                    <apex:outputPanel layout="block" styleClass="topPanel">
+                        <apex:panelGrid width="758" cellpadding="0" cellspacing="0" bgcolor="white" columns="2">
+                            <apex:panelGroup >
+                                <br/>
+                                    <apex:outputText styleClass="title" value="{!$Label.site.user_registration}"/>
+                                <br/>
+                                <br/>
+                                <apex:form id="theForm" forceSSL="true">
+                                    <apex:pageMessages id="error"/>
+                                    <apex:panelGrid columns="2" style="margin-top:1em;">
+
+                                        <apex:outputLabel value="{!$Label.site.username}" for="username"/>
+                                        <apex:inputText required="true" id="username" value="{!szUsername}"/>
+
+                                        <apex:outputLabel value="First Name" for="firstName"/>
+                                        <apex:inputText required="true" id="firstName" value="{!szFirstName}"/>
+
+                                        <apex:outputLabel value="Last Name" for="lastName"/>
+                                        <apex:inputText required="true" id="lastName" value="{!szLastName}"/>
+
+                                        <apex:outputLabel value="Region" for="region"/>
+                                        <apex:inputfield id="region" value="{!Housing_user__c.Region__c}"/>
+
+                                        <apex:outputLabel value="City" for="city"/>
+                                        <apex:inputfield id="city" value="{!Housing_user__c.City__c}"/>
+
+                                        <apex:outputLabel value="Street" for="street"/>
+                                        <apex:inputText required="true" id="street" value="{!szStreet}"/>
+
+                                        <apex:outputLabel value="Appartment" for="appartment"/>
+                                        <apex:inputText required="true" id="appartment" value="{!szAppartment}"/>
+
+                                        <apex:outputLabel value="{!$Label.site.email}" for="email"/>
+                                        <apex:inputText required="true" id="email" value="{!szEmail}"/>
+
+                                        <apex:outputLabel value="{!$Label.site.password}" for="password"/>
+                                        <apex:inputSecret required="true" id="password" value="{!szPassword}"/>
+
+                                        <apex:outputLabel value="{!$Label.site.confirm_password}" for="confirmPassword"/>
+                                        <apex:inputSecret required="true" id="confirmPassword" value="{!szConfirmPassword}"/>
+
+                                        <apex:commandButton action="{!registerUser}" value="{!$Label.site.submit}" id="submit"/>
+                                    </apex:panelGrid>
+                                </apex:form>
+
+                            </apex:panelGroup>
+                        </apex:panelGrid>
+                    </apex:outputPanel>
+                </apex:panelGrid>
+            </apex:panelGrid>
+        </center>
+        <br/>
+    </apex:define>
+
+</apex:page>
