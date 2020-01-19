@@ -261,6 +261,7 @@
     <members>OpportunityCompetitor</members>
     <members>OpportunityContactRole</members>
     <members>OpportunityLineItem</members>
+    <members>OpportunityTeamMember</members>
     <members>Order</members>
     <members>Order_Event__e</members>
     <members>OrderItem</members>
