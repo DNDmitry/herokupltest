@@ -23,6 +23,9 @@
             "c/newestContact": [
                 "newestContact/newestContact.js"
             ],
+            "c/relatedContactsByForAccount": [
+                "relatedContactsByForAccount/relatedContactsByForAccount.js"
+            ],
             "c/selector": [
                 "selector/selector.js"
             ],
@@ -31,20 +34,7 @@
             ],
             "c/yTWrapper": [
                 "yTWrapper/yTWrapper.js"
-            ],
-            "c/relatedContactsByForAccount": [
-                "relatedContactsByForAccount/relatedContactsByForAccount.js"
             ]
-        },
-        "experimentalDecorators": true
-    },
-    "include": [
-        "**/*",
-        "../../../../.sfdx/typings/lwc/**/*.d.ts"
-    ],
-    "typeAcquisition": {
-        "include": [
-            "jest"
-        ]
+        }
     }
 }

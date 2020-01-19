@@ -2,7 +2,7 @@
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <tasks>
         <fullName>bbb</fullName>
-        <assignedTo>dmitry.pavlovych@sparkybit.com</assignedTo>
+        <assignedTo>devorg1@dev.com</assignedTo>
         <assignedToType>user</assignedToType>
         <description>dfdsafdsfdsfdsfdsfdsfdsfdsfdsfdxzcvxzcdsafesgdfbhfgnhfg</description>
         <dueDateOffset>0</dueDateOffset>

@@ -7,7 +7,7 @@ private class CalloutServiceTest{
         requestInfo.endpointForResponse = 'https://google.com';
         Test.startTest();
         Test.setMock(HttpCalloutMock.class, new FieldUsageInfoMock());
-        HttpResponse res = CalloutService.sendFieldUsageInfo(requestInfo);
+        //HttpResponse res = CalloutService.sendFieldUsageInfo(requestInfo);
         Test.stopTest();
     }
 }
